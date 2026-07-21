@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo de despliegue para prediccion de precios</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="panel">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">Demo para clase de arquitectura cloud</p>
+          <h1 data-i18n="title">Servicio de prediccion de MSRP</h1>
+          <p class="summary" data-i18n="summary">
+            Un modelo de scikit-learn se entrena al iniciar el contenedor, guarda un artefacto
+            y sirve predicciones con FastAPI.
+          </p>
+        </div>
+        <form id="predict-form">
+          <label><span data-i18n="make">Marca</span> <select name="make" data-default="bmw"></select></label>
+          <label><span data-i18n="model">Modelo</span> <select name="model" data-default="1_series"></select></label>
+          <label><span data-i18n="year">Ano</span> <input name="year" type="number" value="2011" /></label>
+          <label><span data-i18n="engineHp">Potencia del motor</span> <input name="engine_hp" type="number" value="300" /></label>
+          <label><span data-i18n="engineCylinders">Cilindros</span> <input name="engine_cylinders" type="number" value="6" /></label>
+          <label><span data-i18n="transmission">Transmision</span> <select name="transmission_type" data-default="manual"></select></label>
+          <label><span data-i18n="drivenWheels">Traccion</span> <select name="driven_wheels" data-default="rear_wheel_drive"></select></label>
+          <label><span data-i18n="vehicleSize">Tamano</span> <select name="vehicle_size" data-default="compact"></select></label>
+          <label><span data-i18n="vehicleStyle">Estilo</span> <select name="vehicle_style" data-default="convertible"></select></label>
+          <label><span data-i18n="fuelType">Combustible</span> <select name="engine_fuel_type" data-default="premium_unleaded_(required)"></select></label>
+          <label><span data-i18n="marketCategory">Categoria</span> <select name="market_category" data-default="luxury,performance"></select></label>
+          <label><span data-i18n="doors">Puertas</span> <select name="number_of_doors" data-default="2"></select></label>
+          <label><span data-i18n="highwayMpg">MPG carretera</span> <input name="highway_mpg" type="number" value="28" /></label>
+          <label><span data-i18n="cityMpg">MPG ciudad</span> <input name="city_mpg" type="number" value="19" /></label>
+          <label><span data-i18n="popularity">Popularidad</span> <input name="popularity" type="number" value="3916" /></label>
+          <button type="submit" data-i18n="submit">Predecir MSRP</button>
+        </form>
+        <output id="result" data-i18n="waiting">Esperando prediccion</output>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

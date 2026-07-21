@@ -1,0 +1,9 @@
+services:
+  car-price-app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATA_PATH: /app/data/data.csv
+      MODEL_PATH: /app/models/car_price_model.joblib
+      PORT: 8000

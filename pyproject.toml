@@ -1,0 +1,37 @@
+[project]
+name = "car-price-cloud-architecture-showcase"
+version = "0.1.0"
+description = "End-to-end cloud architecture showcase for training and serving a scikit-learn car price model with Docker Compose on Render."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.116.0",
+    "joblib>=1.4.2",
+    "jinja2>=3.1.0",
+    "numpy>=2.0.0",
+    "pandas>=2.2.0",
+    "pydantic>=2.8.0",
+    "scikit-learn>=1.5.0",
+    "uvicorn[standard]>=0.30.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.27.0",
+    "ipykernel>=6.29.0",
+    "matplotlib>=3.9.0",
+    "notebook>=7.2.0",
+    "pytest>=8.2.0",
+    "ruff>=0.5.0",
+    "seaborn>=0.13.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

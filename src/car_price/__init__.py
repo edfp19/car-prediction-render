@@ -1,1 +1,1 @@
-"""Car price prediction showcase package."""
+"""Paquete de la demo de prediccion de precios de autos."""

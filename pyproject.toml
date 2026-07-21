@@ -1,7 +1,7 @@
 [project]
 name = "car-price-cloud-architecture-showcase"
 version = "0.1.0"
-description = "End-to-end cloud architecture showcase for training and serving a scikit-learn car price model with Docker Compose on Render."
+description = "Demo end-to-end de arquitectura cloud para entrenar y servir un modelo de precios de autos con scikit-learn, Docker Compose y Render."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

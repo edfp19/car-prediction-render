@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 from car_price.predict import predict_price, prediction_options
 
-app = FastAPI(title="Car Price Cloud Architecture Showcase")
+app = FastAPI(title="Demo de arquitectura cloud para prediccion de precios")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 

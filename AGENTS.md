@@ -1,21 +1,26 @@
 # AGENTS.md
 
-## Project Intent
+## Intencion del proyecto
 
-This is a cloud architecture showcase that uses a small machine learning model as the workload. The model is not the product; the product is a clear, reproducible end-to-end deployment story:
+Este proyecto es una demo de arquitectura cloud que usa un modelo pequeno de
+machine learning como carga de trabajo. El modelo no es el producto; el producto
+es una historia de despliegue end-to-end clara, reproducible y facil de explicar:
 
-1. Train a scikit-learn regression model from local data.
-2. Save the trained artifact.
-3. Serve predictions through a small API.
-4. Run the whole application with one Docker Compose file.
-5. Deploy the compose-based service on Render.
-6. Document the local-to-cloud workflow clearly enough for a class presentation.
+1. Entrenar un modelo de regresion con scikit-learn usando datos locales.
+2. Guardar el artefacto entrenado.
+3. Servir predicciones mediante una API pequena.
+4. Ejecutar toda la aplicacion con un solo archivo Docker Compose.
+5. Desplegar el servicio en Render.
+6. Documentar el flujo local-a-cloud para una presentacion de clase.
 
-## Reference Style
+## Estilo de referencia
 
-Use the simple teaching style from DataTalksClub Machine Learning Zoomcamp `02-regression`: readable scripts, straightforward pandas/scikit-learn training, explicit validation, RMSE reporting, and a saved model artifact. Keep the implementation approachable rather than framework-heavy.
+Usa el estilo didactico y simple de DataTalksClub Machine Learning Zoomcamp
+`02-regression`: scripts legibles, pandas/scikit-learn directo, validacion
+explicita, reporte de RMSE y guardado del artefacto. Mantener la implementacion
+entendible es mas importante que usar una arquitectura compleja.
 
-## Proposed Folder Structure
+## Estructura propuesta
 
 ```text
 .
@@ -44,34 +49,34 @@ Use the simple teaching style from DataTalksClub Machine Learning Zoomcamp `02-r
     └── test_api.py
 ```
 
-## Implementation Guidelines
+## Guia de implementacion
 
-- Use `uv` as the Python package manager.
-- Keep dependencies in `pyproject.toml`.
-- Prefer simple scikit-learn pipelines for preprocessing and modeling.
-- Keep training code runnable with `uv run python -m car_price.train`.
-- Keep serving code runnable with `uv run uvicorn car_price.api:app --host 0.0.0.0 --port 8000`.
-- Save generated model artifacts under `models/`.
-- Do not commit generated model binaries, caches, virtual environments, or local secrets.
-- Keep Docker Compose as the deployment entry point.
-- Use environment variables for runtime settings such as model path and port.
-- Keep tests focused on artifact loading, prediction shape, and API health/prediction behavior.
+- Usar `uv` como gestor de paquetes de Python.
+- Mantener las dependencias en `pyproject.toml`.
+- Preferir pipelines simples de scikit-learn para preparacion y modelado.
+- El entrenamiento debe poder ejecutarse con `uv run python -m car_price.train`.
+- El servicio debe poder ejecutarse con `uv run uvicorn car_price.api:app --host 0.0.0.0 --port 8000`.
+- Guardar los artefactos generados bajo `models/`.
+- No commitear binarios generados del modelo, caches, entornos virtuales o secretos locales.
+- Usar Docker Compose como punto de entrada del despliegue.
+- Usar variables de entorno para configuracion de runtime, como ruta del modelo y puerto.
+- Mantener los tests enfocados en carga del artefacto, forma de la prediccion y comportamiento basico de la API.
 
-## Deployment Showcase Requirements
+## Requisitos de la demo de despliegue
 
-The final project should include:
+El proyecto final debe incluir:
 
-- A local training command.
-- A local API command.
-- A `compose.yaml` that builds and serves the API.
-- A Render deployment path using the same container/compose contract where possible.
-- A README section with screenshots or command output showing the deployed endpoint responding.
-- A short architecture explanation suitable for a cloud architecture class.
+- Un comando local de entrenamiento.
+- Un comando local para levantar la API.
+- Un `compose.yaml` que construya y sirva la API.
+- Una ruta de despliegue en Render usando el mismo contrato de contenedor cuando sea posible.
+- Una seccion del README con comandos o evidencia de que el endpoint desplegado responde.
+- Una explicacion corta de arquitectura apropiada para una clase de arquitectura cloud.
 
-## Confirmed Decisions
+## Decisiones confirmadas
 
-- The prediction target is `MSRP`, normalized to `msrp` in training code.
-- Commit `data/data.csv`; it is part of the reproducible class project.
-- Include a small frontend in the same FastAPI service.
-- Train the model on container startup before serving the API.
-- Keep the model implementation simple and scikit-learn based.
+- El target de prediccion es `MSRP`, normalizado como `msrp` en el codigo de entrenamiento.
+- `data/data.csv` debe commitearse porque forma parte de la reproducibilidad del proyecto.
+- Incluir una interfaz web pequena dentro del mismo servicio FastAPI.
+- Entrenar el modelo al iniciar el contenedor antes de servir la API.
+- Mantener el modelo simple y basado en scikit-learn.

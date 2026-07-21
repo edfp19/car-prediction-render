@@ -1,11 +1,12 @@
-# Car Price Cloud Architecture Showcase
+# Demo de arquitectura cloud para prediccion de precios
 
-This project demonstrates an end-to-end cloud deployment flow around a simple
-scikit-learn regression model. The model predicts vehicle `MSRP`, but the main
-deliverable is the deployment architecture: training, artifact creation, API
-serving, a small frontend, Docker Compose, and a Render-ready container setup.
+Este proyecto muestra un flujo de despliegue end-to-end alrededor de un modelo
+simple de regresion con scikit-learn. El modelo predice el `MSRP` de un vehiculo,
+pero el entregable principal es la arquitectura de despliegue: entrenamiento,
+creacion del artefacto, API, interfaz web pequena, Docker Compose y preparacion para
+Render.
 
-## Local Setup
+## Configuracion local
 
 ```bash
 uv sync
@@ -13,7 +14,7 @@ uv run python -m car_price.train
 uv run uvicorn car_price.api:app --host 0.0.0.0 --port 8000
 ```
 
-Open `http://localhost:8000` for the frontend.
+Abre `http://localhost:8000` para usar la interfaz web.
 
 ## Docker Compose
 
@@ -21,18 +22,18 @@ Open `http://localhost:8000` for the frontend.
 docker compose up --build
 ```
 
-The container trains the model on startup, saves the artifact to `models/`, and
-then starts the API.
+El contenedor entrena el modelo al iniciar, guarda el artefacto en `models/` y
+despues levanta la API.
 
 ## API
 
-Health check:
+Revision de salud:
 
 ```bash
 curl http://localhost:8000/health
 ```
 
-Prediction:
+Prediccion:
 
 ```bash
 curl -X POST http://localhost:8000/predict \
@@ -56,25 +57,32 @@ curl -X POST http://localhost:8000/predict \
   }'
 ```
 
-## Render Deployment
+Opciones para los dropdowns:
 
-Use the Dockerfile as the web service runtime. The same startup command trains
-the model and serves the API:
+```bash
+curl http://localhost:8000/options
+```
+
+## Despliegue en Render
+
+Usa el `Dockerfile` como runtime del servicio web. El mismo comando de arranque
+entrena el modelo y sirve la API:
 
 ```bash
 ./scripts/start.sh
 ```
 
-Set the service port to `8000` if Render does not infer it automatically.
+Configura el puerto del servicio como `8000` si Render no lo detecta
+automaticamente.
 
-## Architecture
+## Arquitectura
 
 ```text
 data/data.csv
-    -> startup training with scikit-learn
+    -> entrenamiento al iniciar con scikit-learn
     -> models/car_price_model.joblib
-    -> FastAPI prediction service
-    -> static frontend and JSON API
-    -> Docker Compose locally
-    -> Render web service
+    -> servicio de prediccion con FastAPI
+    -> interfaz web estatica y API JSON
+    -> Docker Compose en local
+    -> servicio web en Render
 ```
